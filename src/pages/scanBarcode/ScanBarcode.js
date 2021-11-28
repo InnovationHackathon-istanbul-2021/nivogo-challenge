@@ -1,10 +1,10 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import "./scanBarcode.css";
-import sampleShoe from "./images/sampleShoe.jpg";
+import React from "react"
+import { useNavigate } from "react-router-dom"
+import "./scanBarcode.css"
+import sampleShoe from "./images/sampleShoe.jpg"
 
 function ScanBarcode() {
-  let navigate = useNavigate();
+  let navigate = useNavigate()
 
   return (
     <div className="scanTheBarcode">
@@ -20,17 +20,17 @@ function ScanBarcode() {
           <input
             type="text"
             placeholder="Brand Name"
-            className="input input-lg bg-gray-200"
+            className="input input-lg bg-gray-200 text-black"
           />
           <input
             type="text"
             placeholder="Shoe Model"
-            className="input input-lg bg-gray-200"
+            className="input input-lg bg-gray-200 text-black"
           />
           <input
             type="text"
             placeholder="Shoe Type"
-            className="input input-lg bg-gray-200"
+            className="input input-lg bg-gray-200 text-black"
           />
         </div>
         <div className="flex items-center space-x-4">
@@ -43,6 +43,6 @@ function ScanBarcode() {
         </div>
       </header>
     </div>
-  );
+  )
 }
-export default ScanBarcode;
+export default ScanBarcode

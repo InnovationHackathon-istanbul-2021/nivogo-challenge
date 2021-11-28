@@ -9,19 +9,24 @@ function ScanningBarcode() {
   return (
     <div className="scanningBarcode">
       <header className="scanTheBarcode--header space-y-12">
-        <h1 className="scanTheBarcode--title mb-16">Check The Shoe</h1>
         <div>
           <img
             src={scanning_Bar2}
             alt="Scanning Barcode"
             classNameName="rounded-md productPhoto"
           />
+          {/* <div class="card bordered bg-gray-300">
+                <figure>
+                  <img src="https://picsum.photos/id/1005/400/250">
+                </figure> 
+              
+        </div>  */}
         </div>
         <div>
           <input
             type="text"
-            placeholder="Type Barcode"
-            className="input input-lg bg-gray-200"
+            placeholder="Type Barcode..."
+            className="input input-lg bg-gray-200 text-black"
           />
         </div>
         <div className="flex items-center space-x-8">

@@ -19,7 +19,7 @@ function CheckTheShoe() {
             />
             <button
               class="btn btn-accent btn-lg mb-12 w-full"
-              onClick={() => navigate("/scan-barcode")}
+              onClick={() => navigate("/scanning-barcode")}
             >
               Upload Barcode
             </button>
