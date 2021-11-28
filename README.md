@@ -26,6 +26,7 @@ In our project, for match the shoes, we have worked on the following three solut
 ### Backend
 
 - Python
+- Firebase
 - OpenCV
 - Numpy
 - Pandas

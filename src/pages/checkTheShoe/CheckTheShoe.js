@@ -1,11 +1,12 @@
-import React from "react"
-import { useNavigate } from "react-router-dom"
-import "./checkTheShoe.css"
-import camera from "./images/camera.png"
-import barcode from "./images/barcode.png"
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import "./checkTheShoe.css";
+import camera from "./images/camera.png";
+import barcode from "./images/barcode.png";
+import home from "../../home.png";
 
 function CheckTheShoe() {
-  let navigate = useNavigate()
+  let navigate = useNavigate();
   return (
     <div className="checkTheShoe">
       <header className="checkTheShoe--header">
@@ -40,8 +41,17 @@ function CheckTheShoe() {
             </div>
           </div>
         </div>
+        <div className="flex content-center mt-8">
+          <img
+            src={home}
+            className="camera mb-12 example w-full"
+            style={{ width: "4rem" }}
+            alt="home"
+            onClick={() => navigate("/")}
+          />
+        </div>
       </header>
     </div>
-  )
+  );
 }
-export default CheckTheShoe
+export default CheckTheShoe;

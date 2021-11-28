@@ -1,10 +1,11 @@
-import React from "react"
-import { useNavigate } from "react-router-dom"
-import "./scanBarcode.css"
-import sampleShoe from "./images/sampleShoe.jpg"
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import "./scanBarcode.css";
+import sampleShoe from "./images/sampleShoe.jpg";
+import home from "../../home.png";
 
 function ScanBarcode() {
-  let navigate = useNavigate()
+  let navigate = useNavigate();
 
   return (
     <div className="scanTheBarcode">
@@ -41,8 +42,17 @@ function ScanBarcode() {
             Check
           </button>
         </div>
+        <div className="flex content-center mt-8">
+          <img
+            src={home}
+            className="camera mb-12 example w-full"
+            style={{ width: "4rem" }}
+            alt="home"
+            onClick={() => navigate("/")}
+          />
+        </div>
       </header>
     </div>
-  )
+  );
 }
-export default ScanBarcode
+export default ScanBarcode;
