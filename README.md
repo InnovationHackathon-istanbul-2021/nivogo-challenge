@@ -12,7 +12,7 @@ In our project, for match the shoes, we have worked on the following three solut
 
 [Mobile UI Demo](https://framer.com/share/Eros-template--5kVokEzgea3oKlDpffVn/TsXBto6tu#TsXBto6tu)
 
-[Web Application Demo](nivogo2021.netlify.app)
+[Web Application Demo](https://nivogo2021.netlify.app/)
 
 ## Installation
 
