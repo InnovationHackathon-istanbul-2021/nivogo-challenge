@@ -1,12 +1,11 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import "./checkTheShoe.css";
-import camera from "./images/camera.png";
-//import id_code from "./images/id_code.png";
-import barcode from "./images/barcode.png";
+import React from "react"
+import { useNavigate } from "react-router-dom"
+import "./checkTheShoe.css"
+import camera from "./images/camera.png"
+import barcode from "./images/barcode.png"
 
 function CheckTheShoe() {
-  let navigate = useNavigate();
+  let navigate = useNavigate()
   return (
     <div className="checkTheShoe">
       <header className="checkTheShoe--header">
@@ -43,6 +42,6 @@ function CheckTheShoe() {
         </div>
       </header>
     </div>
-  );
+  )
 }
-export default CheckTheShoe;
+export default CheckTheShoe

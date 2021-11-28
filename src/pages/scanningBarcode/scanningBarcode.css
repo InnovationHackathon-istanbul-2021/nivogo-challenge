@@ -1,8 +1,8 @@
-.scanTheBarcode {
+.scanningBarcode {
   text-align: center;
 }
 
-.scanTheBarcode--header {
+.scanningBarcode--header {
   background-color: #fff;
   min-height: 100vh;
   display: flex;
@@ -10,11 +10,4 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-}
-
-.scanTheBarcode--title {
-  font-size: 1.5em;
-  font-weight: bold !important;
-  color: black;
-  background-color: #fff;
 }
