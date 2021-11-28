@@ -19,6 +19,7 @@ function AccessDatabase() {
   get(child(dbRef, `/`)).then((snapshot) => {
     if (snapshot.exists()) {
       setState(snapshot.val());
+      state.slice(0, 100);
     } else {
       console.log("No data available");
     }
