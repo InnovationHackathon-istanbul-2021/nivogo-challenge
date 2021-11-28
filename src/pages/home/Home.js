@@ -9,17 +9,17 @@ function Home() {
   return (
     <div className="homePage">
       <header className="homePage--header">
-        <img src={shoe_Icon} className="shoe-Icon" alt="logo" />
+        <img src={shoe_Icon} className="object-contain w-3/12 lg:w-1/12" alt="logo" />
         <button
-          class="btn btn-accent btn-lg mb-24"
+          class="btn btn-accent btn-lg mb-24 w-4/12 text-xs lg:w-1/12 lg:text-xs "
           onClick={() => navigate("/check-the-shoe")}
         >
           Check the shoe
         </button>
 
-        <img src={database_Icon} className="database-Icon" alt="logo" />
+        <img src={database_Icon} className="object-contain w-3/12 lg:w-1/12 mb-5" alt="logo" />
         <button
-          class="btn btn-accent btn-lg"
+          class="btn btn-accent btn-lg mb-24 w-4/12 text-xs lg:w-1/12 lg:text-xs"
           onClick={() => navigate("/access-database")}
         >
           Access database

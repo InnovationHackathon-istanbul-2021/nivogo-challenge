@@ -9,16 +9,16 @@ function CheckTheShoe() {
   return (
     <div className="checkTheShoe">
       <header className="checkTheShoe--header">
-        <h1 className="checkTheShoe--title mb-16">Check The Shoe</h1>
+        <h1 className="text-black text-6xl mb-16">Check The Shoe</h1>
         <div className="flex flex-wrap flex-col justify-around box-content">
           <div>
             <img
               src={barcode}
-              className="scan_Barcode mb-12 example w-full"
+              className="object-contain w-8/12 lg:w-12/12 mx-auto mb-5"
               alt="logo"
             />
             <button
-              class="btn btn-accent btn-lg mb-12 w-full"
+              class="btn btn-accent btn-lg mb-24 w-8/12 text-xs lg:w-8/12 lg:text-xs"
               onClick={() => navigate("/scanning-barcode")}
             >
               Upload Barcode
@@ -28,11 +28,11 @@ function CheckTheShoe() {
             <div>
               <img
                 src={camera}
-                className="camera mb-12 example w-full"
+                className="object-contain w-8/12 lg:w-12/12 mx-auto mb-5"
                 alt="logo"
               />
               <button
-                class="btn btn-accent btn-lg w-full"
+                class="btn btn-accent btn-lg mb-24 w-8/12 text-xs lg:w-8/12 lg:text-xs"
                 onClick={() => navigate("/")}
               >
                 Scan Image

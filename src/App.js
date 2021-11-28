@@ -5,6 +5,7 @@ import CheckTheShoe from "./pages/checkTheShoe/CheckTheShoe"
 import ScanBarcode from "./pages/scanBarcode/ScanBarcode"
 import AccessDatabase from "./pages/accessDatabase/AccessDatabase"
 import ScanningBarcode from "./pages/scanningBarcode/ScanningBarcode"
+import ManualSearch from "./pages/manualSearch/ManualSearch";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/scan-barcode" element={<ScanBarcode />} />
           <Route path="/access-database" element={<AccessDatabase />} />
           <Route path="/scanning-barcode" element={<ScanningBarcode />} />
+          <Route path="/manual-search" element={<ManualSearch />} />
         </Routes>
       </div>
     </Router>

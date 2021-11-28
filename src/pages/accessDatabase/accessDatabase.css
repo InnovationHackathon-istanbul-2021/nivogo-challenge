@@ -25,3 +25,6 @@
   text-align: center;
   color: black;
 }
+.object-fit-cover {
+  object-fit: cover;
+}
