@@ -28,8 +28,8 @@ function AccessDatabase() {
   });
 
   return (
-    <div className="overflow-x-auto w-8/12" id="sonuc">
-    <table className="table w-8/12">
+    <div className="overflow-x-auto w-8/12 mx-auto" id="sonuc">
+    <table className="table w-full">
       <thead>
         <tr>
           <th>BARKOD</th> 
