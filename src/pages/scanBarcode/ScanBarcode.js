@@ -1,20 +1,21 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./scanBarcode.css";
-// import mockShoePhoto from "./images/mockShoePhoto.jpg"
+import sampleShoe from "./images/sampleShoe.jpg";
 
 function ScanBarcode() {
   let navigate = useNavigate();
+
   return (
     <div className="scanTheBarcode">
       <header className="scanTheBarcode--header">
-        {/* <div>
-        <img
-          src={mockShoePhoto}
-          alt="Shoe Photo"
-          classNameName="rounded-md productPhoto"
-        />
-      </div> */}
+        <div>
+          <img
+            src={sampleShoe}
+            alt="Shoe"
+            classNameName="rounded-md productPhoto"
+          />
+        </div>
         <div className="flex flex-col">
           <input
             type="text"
