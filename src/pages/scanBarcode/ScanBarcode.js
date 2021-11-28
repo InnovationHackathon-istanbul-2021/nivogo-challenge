@@ -8,7 +8,7 @@ function ScanBarcode() {
 
   return (
     <div className="scanTheBarcode">
-      <header className="scanTheBarcode--header">
+      <header className="scanTheBarcode--header space-y-12">
         <div>
           <img
             src={sampleShoe}
@@ -16,50 +16,24 @@ function ScanBarcode() {
             classNameName="rounded-md productPhoto"
           />
         </div>
-        <div className="flex flex-col">
+        <div className="flex flex-col space-y-4">
           <input
             type="text"
             placeholder="Brand Name"
-            className="input input-accent input-bordered"
+            className="input input-lg bg-gray-200"
           />
           <input
             type="text"
             placeholder="Shoe Model"
-            className="input input-accent input-bordered"
+            className="input input-lg bg-gray-200"
           />
           <input
             type="text"
             placeholder="Shoe Type"
-            className="input input-accent input-bordered"
+            className="input input-lg bg-gray-200"
           />
         </div>
-        <div className="flex">
-          <div className="flex">
-            <label className="cursor-pointer label">
-              <span className="label-text text-grey-600 text-lg">Left</span>
-              <input
-                type="radio"
-                name="opt"
-                checked="checked"
-                className="radio"
-                value="left"
-              />
-            </label>
-          </div>
-          <div className="flex">
-            <label className="cursor-pointer label">
-              <span className="label-text text-grey-600 text-lg">Right</span>
-              <input
-                type="radio"
-                name="opt"
-                checked="checked"
-                className="radio"
-                value="right"
-              />
-            </label>
-          </div>
-        </div>
-        <div className="flex items-center">
+        <div className="flex items-center space-x-4">
           <button className="btn btn-accent btn-lg" onClick={() => {}}>
             Cancel
           </button>
