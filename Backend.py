@@ -1,9 +1,12 @@
+""" This code is written by Eng. Abduallah Damash at 27/11/2021
+Content Based Image Classifier project for Impact Hup
+Middle East Technical University, All Right Saved"""
 import numpy as np
 import pandas as pd
 from pyzbar import pyzbar
 import cv2
 from PIL import Image
-import requests
+from glob import glob
 from urllib.request import urlopen
 
 def decode(image):
@@ -11,14 +14,15 @@ def decode(image):
   decoded_objects = pyzbar.decode(image)
   for obj in decoded_objects:
     # draw the barcode
-    print("detected barcode:", obj)
+    #print("detected barcode:", obj)
     image = draw_barcode(obj, image)
     # print barcode type & data
-    print("Type:", obj.type)
-    print("Data:", obj.data)
-    print()
+    #print("Type:", obj.type)
+    #print("Data:", obj.data)
+    #print()
 
   return image, obj
+
 def draw_barcode(decoded, image):
     # n_points = len(decoded.polygon)
     # for i in range(n_points):
@@ -29,6 +33,7 @@ def draw_barcode(decoded, image):
                           color=(0, 255, 0),
                           thickness=5)
     return image
+
 def overlay_image_alpha(img, img_overlay, x, y, alpha_mask):
     """Overlay `img_overlay` onto `img` at (x, y) and blend using `alpha_mask`.
 
@@ -53,8 +58,9 @@ def overlay_image_alpha(img, img_overlay, x, y, alpha_mask):
     alpha_inv = 1.0 - alpha
 
     img_crop[:] = alpha * img_overlay_crop + alpha_inv * img_crop
+
 def resizeImage (imga):
-    print('Original Dimensions : ', imga.shape)
+    #print('Original Dimensions : ', imga.shape)
 
     # scale_percent = 40  # percent of original size
     # width = int(imga.shape[1] * scale_percent / 100)
@@ -66,26 +72,11 @@ def resizeImage (imga):
     # resize image
     resized = cv2.resize(imga, dim, interpolation=cv2.INTER_AREA)
 
-    print('Resized Dimensions : ', resized.shape)
+    #print('Resized Dimensions : ', resized.shape)
 
-    cv2.imshow("Resized image", resized)
-    cv2.waitKey(0)
+    # cv2.imshow("Resized image", resized)
+    # cv2.waitKey(0)
     return resized
-
-# if __name__ == "__main__":
-#     from glob import glob
-#
-#     barcodes = glob("barcode*.jpg")
-#     for barcode_file in barcodes:
-#         # load the image to opencv
-#         img = cv2.imread(barcode_file)
-#         # decode detected barcodes & get the image
-#         # that is drawn
-#         img = decode(img)
-#         # show the image
-#         cv2.imshow("img", img)
-#         cv2.waitKey(0)
-
 
 def matchBracodeWithDatabase (barcodeImage, filename, URLColumnName,BarcodeColumnName ):
     database = pd.read_excel(filename)
@@ -93,56 +84,70 @@ def matchBracodeWithDatabase (barcodeImage, filename, URLColumnName,BarcodeColum
 
     img2 = cv2.imread(barcodeImage)
     decodedIm, decodedObj = decode(img2)
+    try:
+        intdecodedObj = int(decodedObj.data.decode("utf-8"))
+    except:
+        intdecodedObj = decodedObj.data.decode("utf-8")
     a = database[BarcodeColumnName]
     b = database[URLColumnName]
     c = database['MARKA']
     d = database['MODEL ADI']
     e = database['ÜRÜN ÇEŞİT']
     f = database['BEDEN']
+    try:
+        for barcode, url, brand, modol, type, size  in zip(a, b,c ,d,e,f):
+            if barcode == intdecodedObj:
+                url = url
+                #print(barcode, url)
 
-    for barcode, url, brand, modol, type, size  in zip(a, b,c ,d,e,f):
-        if barcode == int(decodedObj.data.decode("utf-8")):
-            url = url
-            print(barcode, url)
+
+                img = np.array(Image.open(urlopen(url)))
+                img2 = resizeImage(img)
+                print('match')
+
+                # black blank image
+                blank_image = 255 * np.ones(shape=[620, 380, 3], dtype=np.uint8)
+
+                #print(blank_image.shape, img2.shape)
+
+                # Prepare inputs
+                x, y = 50, 0
+                img = blank_image
+                img_overlay_rgba = cv2.cvtColor(img2, cv2.COLOR_RGB2RGBA).copy()
+
+                # Perform blending
+                alpha_mask = img_overlay_rgba[:, :, 3] / 255.0
+                img_result = img[:, :, :3].copy()
+                img_overlay = img_overlay_rgba[:, :, :3]
+                overlay_image_alpha(img_result, img_overlay, x, y, alpha_mask)
+
+                # Save result
+                out = Image.fromarray(img_result)
+                np_out = np.array(out)
+                #print(np_out.shape)
+                np_out2 = cv2.putText(np_out,str(brand) , (40, 325), cv2.FONT_HERSHEY_PLAIN, 1, (255, 0, 0), 2)
+                np_out3 = cv2.putText(np_out2,str(modol) , (40, 400), cv2.FONT_HERSHEY_PLAIN, 1, (255, 0, 0), 2)
+                np_out4 = cv2.putText(np_out3,str(type) , (40, 475), cv2.FONT_HERSHEY_PLAIN, 1, (255, 0, 0), 2)
+                FinalImage = cv2.putText(np_out4,str(size) , (40, 550), cv2.FONT_HERSHEY_PLAIN, 1, (255, 0, 0), 2)
+        return FinalImage
+    except:
+        blank_image = 255 * np.ones(shape=[620, 380, 3], dtype=np.uint8)
+        blank_image = cv2.putText(blank_image, 'Sorry Not Found', (40, 325), cv2.FONT_HERSHEY_PLAIN, 2, (255, 0, 0), 2)
+        print(f'Sorry Barcode {intdecodedObj} is not found')
+        return blank_image
 
 
-            img = np.array(Image.open(urlopen(url)))
-            img2 = resizeImage(img)
-            print('match')
+if __name__ == "__main__":
 
-            # black blank image
-            blank_image = 255 * np.ones(shape=[620, 380, 3], dtype=np.uint8)
+    filename= 'Database.xlsx'
+    URLColumnName= 'FOTO URL'
+    BarcodeColumnName = 'BARKOD'
+    barcodes = glob("barcode*")
+    print(barcodes)
+    for barcode_file in barcodes:
+        #barcodeImage = cv2.imread(barcode_file)
 
-            print(blank_image.shape, img2.shape)
+        finalimage = matchBracodeWithDatabase(barcode_file,filename,URLColumnName, BarcodeColumnName )
 
-            # Prepare inputs
-            x, y = 50, 0
-            img = blank_image
-            img_overlay_rgba = cv2.cvtColor(img2, cv2.COLOR_RGB2RGBA).copy()
-
-            # Perform blending
-            alpha_mask = img_overlay_rgba[:, :, 3] / 255.0
-            img_result = img[:, :, :3].copy()
-            img_overlay = img_overlay_rgba[:, :, :3]
-            overlay_image_alpha(img_result, img_overlay, x, y, alpha_mask)
-
-            # Save result
-            out = Image.fromarray(img_result)
-            np_out = np.array(out)
-            print(np_out.shape)
-            cv2.imshow("White Blank", np_out)
-            cv2.waitKey(0)
-            np_out2 = cv2.putText(np_out,brand , (60, 325), cv2.FONT_HERSHEY_TRIPLEX, 1, (255, 0, 0), 1)
-            np_out3 = cv2.putText(np_out2,modol , (60, 400), cv2.FONT_HERSHEY_TRIPLEX, 1, (255, 0, 0), 1)
-            np_out4 = cv2.putText(np_out3,type , (60, 475), cv2.FONT_HERSHEY_TRIPLEX, 1, (255, 0, 0), 1)
-            FinalImage = cv2.putText(np_out4,str(size) , (60, 550), cv2.FONT_HERSHEY_TRIPLEX, 1, (255, 0, 0), 1)
-    return FinalImage
-
-# Read the excel file
-filename= 'Database.xlsx'
-URLColumnName= 'FOTO URL'
-BarcodeColumnName = 'BARKOD'
-barcodeImage = 'barcode4.jpg'
-finalimage = matchBracodeWithDatabase(barcodeImage,filename,URLColumnName, BarcodeColumnName )
-cv2.imshow('show', finalimage)
-cv2.waitKey(0)
+        cv2.imshow("img", finalimage)
+        cv2.waitKey(0)
