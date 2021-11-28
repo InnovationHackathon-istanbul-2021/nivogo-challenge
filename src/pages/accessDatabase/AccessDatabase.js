@@ -1,12 +1,8 @@
 import React, { useEffect } from "react";
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, child, get } from "firebase/database";
-import { useNavigate } from "react-router-dom";
-import home from "../../home.png";
 
 function AccessDatabase() {
-  let navigate = useNavigate();
-
   const firebaseConfig = {
     apiKey: "AIzaSyDOax3-UK6ZOdWAORWZXoZFugmVw2W4K0E",
     authDomain: "eros-140d7.firebaseapp.com",
@@ -35,8 +31,8 @@ function AccessDatabase() {
     });
 
   return (
-    <div className="overflow-x-auto w-8/12" id="sonuc">
-      <table className="table w-8/12">
+    <div className="overflow-x-auto w-8/12 mx-auto" id="sonuc">
+      <table className="table w-full">
         <thead>
           <tr>
             <th>BARKOD</th>
@@ -77,15 +73,6 @@ function AccessDatabase() {
           })}
         </tbody>
       </table>
-      <div className="flex content-center mt-8">
-        <img
-          src={home}
-          className="camera mb-12 example w-full"
-          style={{ width: "4rem" }}
-          alt="home"
-          onClick={() => navigate("/")}
-        />
-      </div>
     </div>
   );
 }
