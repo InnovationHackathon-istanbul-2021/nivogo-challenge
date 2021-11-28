@@ -20,9 +20,9 @@ function Home() {
         <img src={database_Icon} className="database-Icon" alt="logo" />
         <button
           class="btn btn-accent btn-lg"
-          onClick={() => navigate("/check-database")}
+          onClick={() => navigate("/access-database")}
         >
-          Check database
+          Access database
         </button>
       </header>
     </div>

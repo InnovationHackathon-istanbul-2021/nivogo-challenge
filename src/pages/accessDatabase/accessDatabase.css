@@ -1,8 +1,8 @@
-.checkTheShoe {
+.accessDatabase {
   text-align: center;
 }
 
-.checkTheShoe--header {
+.accessDatabase--header {
   background-color: #fff;
   min-height: 100vh;
   display: flex;
@@ -12,15 +12,16 @@
   font-size: calc(10px + 2vmin);
 }
 
-.checkTheShoe--title {
+.accessDatabase--title {
   font-size: 1.5em;
   font-weight: bold !important;
   color: black;
   background-color: #fff;
 }
 
-.example {
-  width: 220px;
-  height: auto;
-  box-sizing: border-box;
+.accessDatabase--message {
+  font-weight: 300;
+  font-size: 1.5em;
+  text-align: center;
+  color: black;
 }
