@@ -38,31 +38,25 @@ function ScanningBarcode() {
     });
   return (
     <div className="scanningBarcode">
-      <header className="scanTheBarcode--header space-y-12">
+      <header className="scanTheBarcode--header space-y-20">
         <div>
           <img
             src={scanning_Bar2}
             alt="Scanning Barcode"
             className="rounded-md productPhoto"
           />
-          {/* <div className="card bordered bg-gray-300">
-                <figure>
-                  <img src="https://picsum.photos/id/1005/400/250">
-                </figure>
-
-        </div>  */}
         </div>
-        <div>
-          <input
-            type="text"
-            placeholder="Type Barcode..."
-            className="input input-lg bg-gray-200 text-black"
-            id="barcode"
-          />
-        </div>
-        <div className="flex items-center flex-col space-x-8">
+        <div className="flex">
+          <div>
+            <input
+              type="text"
+              placeholder="Type Barcode Number..."
+              className="input input-lg bg-gray-200 text-black"
+              id="barcode"
+            />
+          </div>
           <button
-            className="btn btn-accent btn-md mb-12"
+            className="btn btn-accent btn-lg"
             onClick={(e) => {
               e.preventDefault();
               var yok = false;
@@ -115,14 +109,17 @@ function ScanningBarcode() {
               }
             }}
           >
-            Check
+            Check Barcode
           </button>
+        </div>
+
+        <div className="flex items-center flex-col">
           <label
             className="
-  btn btn-accent btn-md mb-12
+  btn btn-accent btn-lg mb-12
   "
           >
-            Upload Image
+            Scan Photo
             <input
               type={"file"}
               className="hidden "
@@ -198,6 +195,43 @@ function ScanningBarcode() {
               }}
             />
           </label>
+          <div className="flex justify-between items-center mb-12">
+            <div className="flex flex-start">
+              <input
+                type="text"
+                placeholder="Type Shelf Info..."
+                className="input input-lg bg-gray-200 text-black"
+                id="shelfLocation"
+              />
+            </div>
+            <div className="flex">
+              <div className="ml-6">
+                <label class="cursor-pointer label">
+                  <span class="label-text text-black text-xl">Left</span>
+                  <input
+                    type="radio"
+                    name="opt"
+                    checked="checked"
+                    class="radio radio-accent radio-lg"
+                    value="Left"
+                  />
+                </label>
+              </div>
+              <div className="ml-6">
+                <label class="cursor-pointer label">
+                  <span class="label-text text-black text-xl">Right</span>
+                  <input
+                    type="radio"
+                    name="opt"
+                    checked="checked"
+                    class="radio radio-accent radio-lg"
+                    value="Right"
+                  />
+                </label>
+              </div>
+            </div>
+          </div>
+          <button className="btn btn-accent btn-xl w-full text-xl">Save</button>
           <div className="overflow-x-auto hidden" id="sonuc">
             <table className="table w-full">
               <thead>
